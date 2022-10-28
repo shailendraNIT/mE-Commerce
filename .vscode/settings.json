@@ -1,0 +1,10 @@
+{
+    "terminal.integrated.profiles.windows":{
+        
+        "Git Bash":{"path":"F:\\Apps\\Git\\bin\\bash.exe"}, },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.env.windows": {
+    
+    }
+
+}
