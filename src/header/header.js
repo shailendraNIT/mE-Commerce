@@ -4,9 +4,15 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../Providers/StateContext";
+import { auth } from "../firebase";
 
 const Header = () => {
-  const [{ cart }] = useStateValue();
+  const [{ cart, user }] = useStateValue();
+  const handleAuth = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
   return (
     <div className="header">
       <Link to="/">
@@ -22,10 +28,12 @@ const Header = () => {
         <SearchIcon className="search_icon" />
       </div>
       <div className="header_nav">
-        <Link to="/login">
-          <div className="header_nav_option">
-            <span className="nav_option_line_one">Hello,Sign in</span>
-            <span className="nav_option_line_two">Account & lists</span>
+        <Link to={!user && "/login"}>
+          <div className="header_nav_option" onClick={handleAuth}>
+            <span className="nav_option_line_one">Hello, Guest</span>
+            <span className="nav_option_line_two">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
           </div>
         </Link>
 
