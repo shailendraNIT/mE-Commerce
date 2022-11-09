@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
 import { useStateValue } from "../Providers/StateContext";
 import { getCartTotal } from "../Reducers/Reducer";
 import "./Checkout.css";
 
 function Checkout() {
+  const navigate = useNavigate();
   const { cart } = useStateValue()[0];
   let count = 0;
   return (
@@ -23,7 +25,14 @@ function Checkout() {
           <input type="checkbox" value="This order is a gift" />
           &nbsp;This order is a gift
         </div>
-        <button className="checkout__button">Proceed to checkout</button>
+        <button
+          className="checkout__button"
+          onClick={() => {
+            navigate("/payment");
+          }}
+        >
+          Proceed to checkout
+        </button>
       </div>
     </div>
   );
